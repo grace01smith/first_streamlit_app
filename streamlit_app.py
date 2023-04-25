@@ -43,8 +43,6 @@ try:
 except URLError as e:
   streamlit.error()
 
-streamlit.stop()
-
 def get_fruit_load_list():
     with my_cnx.cursor as my_cur:
         my_cur.execute("select * from fruit_load_list")
@@ -56,6 +54,8 @@ if streamlit.button('Get Fruit Load List'):
     # streamlit.header("The fruit load list contains:")
     streamlit.dataframe(my_data_rows)
 
+streamlit.stop()
+    
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
 streamlit.write('Thank you for adding ', add_my_fruit)
 my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit');")
